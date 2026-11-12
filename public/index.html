@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071326">
+  <title>THAFL Portal</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home">THAFL <span>PORTAL</span></a>
+    <nav><a href="#about">Portal</a><a href="#support">Destek</a></nav>
+    <div id="authArea"><button class="button" data-action="show-login">Giriş Yap</button></div>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <p class="eyebrow">TÜRKAN HALİT AYKILIÇ FEN LİSESİ</p>
+      <h1 id="welcome">Gelecek bilimle, bilim fenle şekillenir.</h1>
+      <p>Öğrenci ve öğretmenler için okul portalı ve destek masası.</p>
+      <div id="heroActions" class="actions">
+        <button class="button" data-action="show-register">Öğrenci Kaydı</button>
+        <button class="button secondary" data-action="show-login">Portal Girişi</button>
+      </div>
+    </section>
+    <section id="about" class="content">
+      <h2>Portal</h2>
+      <div class="cards">
+        <article class="card"><h3>Öğrenci hesabı</h3><p>Destek talepleri oluşturun ve durumlarını takip edin.</p></article>
+        <article class="card"><h3>Öğretmen masası</h3><p>Gelen destek taleplerini inceleyin ve çözülenleri kapatın.</p></article>
+        <article class="card"><h3>Güvenli oturum</h3><p>Hesap parolaları güvenli biçimde özetlenerek saklanır.</p></article>
+      </div>
+    </section>
+    <section id="support" class="content"><h2>Destek Sistemi</h2><p>Destek bileti oluşturmak için öğrenci hesabınızla giriş yapın.</p></section>
+    <section id="workspace" class="content hidden" aria-live="polite"></section>
+  </main>
+  <footer>THAFL Developer Team · Okul Portalı</footer>
+  <dialog id="modal"><form id="modalForm" method="dialog"><button class="dialog-close" type="button" aria-label="Kapat">×</button><div id="modalContent"></div></form></dialog>
+  <div id="notice" role="status" aria-live="polite"></div>
+</body>
+</html>
