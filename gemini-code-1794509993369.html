@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071326">
+  <meta name="description" content="Türkan Halit Aykılıç Fen Lisesi için THAFL Developer Team tarafından hazırlanan okul portalı.">
+  <title>THAFL Portal | Türkan Halit Aykılıç Fen Lisesi</title>
+  <style>
+    :root{color-scheme:dark;--bg:#071326;--panel:#10243d;--blue:#70caff;--muted:#bdcddd;--line:#244768}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#f4f8fc;font:16px/1.65 Arial,sans-serif}
+    a{color:inherit}.topbar{position:sticky;top:0;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:15px 7%;background:#09182bf2;border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+    .brand{color:var(--blue);font-size:20px;font-weight:800;text-decoration:none;letter-spacing:1px}.brand span{color:white;font-size:12px}.nav{display:flex;gap:22px;align-items:center}.nav a{text-decoration:none;color:#d2dfec;font-size:14px}.nav a:hover{color:var(--blue)}
+    .hero{min-height:520px;display:grid;align-content:center;padding:80px 9%;background:radial-gradient(ellipse at 82% 35%,#164c77 0,transparent 42%),linear-gradient(115deg,#071326,#0c2440)}
+    .eyebrow{color:var(--blue);font-size:13px;font-weight:bold;letter-spacing:2px}.hero h1{max-width:780px;margin:12px 0;font-size:clamp(38px,7vw,68px);line-height:1.08}.hero p{max-width:650px;color:var(--muted)}
+    .button{display:inline-block;margin:12px 9px 0 0;padding:11px 18px;border-radius:8px;background:#168bd8;color:white;text-decoration:none;font-weight:bold;cursor:pointer;border:0}
+    .button.secondary{background:#284665}.button:hover{filter:brightness(1.15)}
+    section{padding:60px 9%}h2{color:var(--blue);font-size:30px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.card{padding:23px;background:var(--panel);border:1px solid var(--line);border-radius:14px}.card h3{margin-top:0}.card p{color:var(--muted)}
+    .quote{padding:35px 9%;background:linear-gradient(130deg,#24364b,#101d30)}.quote blockquote{margin:10px 0;color:#e8d29d;font-size:24px;font-style:italic}.classes .card{text-align:center}.badge{display:inline-block;padding:3px 9px;border-radius:20px;background:#1b3b60;color:var(--blue);font-size:12px}
+    /* Modal ve Formlar */
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:20;align-items:center;justify-content:center;padding:15px}
+    .modal.active{display:flex}
+    .modal-box{width:450px;max-width:100%;background:var(--panel);padding:30px;border-radius:18px;border:1px solid var(--line);max-height:90vh;overflow-y:auto}
+    input,select,textarea{width:100%;padding:11px;margin:6px 0 14px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:white}
+    .close-btn{float:right;background:#284665;padding:5px 10px;border-radius:6px;cursor:pointer;font-size:12px}
+    footer{text-align:center;padding:28px;background:#030b17;color:#9aafc5}footer p{margin:5px}.small{font-size:12px;color:#71869b}
+    @media(max-width:700px){.topbar{padding:13px 5%}.nav{gap:10px}.nav a{font-size:12px}.nav a:nth-child(2){display:none}.hero{min-height:450px;padding:65px 7%}section{padding:45px 7%}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#anasayfa">THAFL <span>PORTAL</span></a>
+    <nav class="nav" aria-label="Ana menü">
+      <a href="#anasayfa">Ana Sayfa</a>
+      <a href="#ataturk">Atatürk Köşesi</a>
+      <a href="#okul">Okulumuz</a>
+      <a href="#siniflar">Sınıflar</a>
+      <div id="authNavArea"><button class="button" style="margin:0;padding:7px 14px;font-size:13px;" onclick="acModal('giris')">Giriş Yap</button></div>
+    </nav>
+  </header>
+  
+  <main>
+    <section class="hero" id="anasayfa">
+      <div class="eyebrow">THAFL DEVELOPER TEAM · OKUL PORTALI</div>
+      <h1 id="heroBaslik">Gelecek bilimle, bilim fenle şekillenir.</h1>
+      <p id="heroAciklama">Türkan Halit Aykılıç Fen Lisesi için hazırlanan okul portalına hoş geldiniz. Duyurular, sınıflar ve okul kaynakları için hızlıca göz atın.</p>
+      <div id="heroButonlar">
+        <a class="button" href="#okul">Portalımızı Keşfet</a>
+        <a class="button secondary" onclick="acModal('ogrenciKyt')">Öğrenci Kayıt Ol</a>
+      </div>
+    </section>
+
+    <section id="okul">
+      <h2>Okul Portalı</h2>
+      <div class="cards">
+        <article class="card"><h3>📢 Duyurular</h3><p>Okul etkinlikleri ve güncel bilgilendirmeler için bu alanı takip edin.</p></article>
+        <article class="card"><h3>🎓 Sınıflar</h3><p>Sınıf ve şube alanlarımızı aşağıdan görüntüleyebilirsiniz.</p></article>
+        <article class="card" style="cursor:pointer;" onclick="acModal('destek')"><h3>🛟 Destek Sistemi</h3><p>Bir sorun veya öneriniz mi var? Okul yönetimine bilet gönderin.</p></article>
+      </div>
+    </section>
+
+    <section class="quote" id="ataturk">
+      <h2>🇹🇷 Atatürk Köşesi</h2>
+      <h3>Mustafa Kemal Atatürk (1881–1938)</h3>
+      <blockquote>“Hayatta en hakiki mürşit ilimdir.”</blockquote>
+      <p>Cumhuriyetimizin kurucusu Mustafa Kemal Atatürk’ün bilim ve akılcı eğitime verdiği değer, geleceğe ışık tutmaya devam ediyor.</p>
+    </section>
+
+    <section class="classes" id="siniflar">
+      <h2>Sınıflarımız</h2>
+      <div class="cards" id="sinifListesi"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>THAFL DEVELOPER TEAM</strong></p>
+    <p>Türkan Halit Aykılıç Fen Lisesi Portalı</p>
+    <p class="small">© <span id="yil"></span> · Eğitim ve bilimle geleceğe</p>
+  </footer>
+
+  <!-- Modal Yapısı -->
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <span class="close-btn" onclick="kapatModal()">Kapat X</span>
+      <div id="modalIcerik"></div>
+    </div>
+  </div>
+
+  <script>
+    // Sınıf Listesini Oluştur
+    const list = document.getElementById('sinifListesi');
+    for (let sinif = 9; sinif <= 12; sinif++) {
+      for (const sube of ['A', 'B', 'C']) {
+        const card = document.createElement('article');
+        card.className = 'card';
+        const badge = document.createElement('span'); badge.className = 'badge'; badge.textContent = 'Aktif Şube';
+        const title = document.createElement('h3'); title.textContent = `${sinif}. Sınıf ${sube} Şubesi`;
+        const description = document.createElement('p'); description.textContent = 'Türkan Halit Aykılıç Fen Lisesi';
+        card.append(badge, title, description); list.append(card);
+      }
+    }
+    document.getElementById('yil').textContent = new Date().getFullYear();
+
+    // Oturum Kontrolü (LocalStorage tabanlı)
+    window.onload = function() { oturumKontrol(); };
+
+    function oturumKontrol() {
+      const aktifKullanici = localStorage.getItem("thafl_user");
+      const authNavArea = document.getElementById("authNavArea");
+      const heroBaslik = document.getElementById("heroBaslik");
+      const heroAciklama = document.getElementById("heroAciklama");
+      const heroButonlar = document.getElementById("heroButonlar");
+
+      if(aktifKullanici) {
+        let u = JSON.parse(aktifKullanici);
+        authNavArea.innerHTML = `<span style="color:var(--blue);font-size:13px;font-weight:bold;margin-right:10px;">👤 ${u.ad}</span> <button class="button secondary" style="margin:0;padding:5px 10px;font-size:12px;" onclick="cikisYap()">Çıkış</button>`;
+        
+        if(u.rol === 'Ogrenci') {
+          heroBaslik.textContent = `Hoş geldin, ${u.ad}!`;
+          heroAciklama.textContent = `Şuben: ${u.sube} | Öğrenci portalı üzerinden duyuruları takip edebilir ve destek talebi oluşturabilirsin.`;
+          heroButonlar.innerHTML = `<a class="button" onclick="acModal('destek')">Destek Talebi Oluştur</a>`;
+        } else {
+          heroBaslik.textContent = `Yönetim Paneli, ${u.ad}`;
+          heroAciklama.textContent = `Öğretmen bilet masasını açarak öğrencilerin gönderdiği talepleri inceleyebilir ve yönetebilirsin.`;
+          heroButonlar.innerHTML = `<a class="button" onclick="acModal('adminPaneli')">Öğretmen Bilet Masasını Aç</a>`;
+        }
+      } else {
+        authNavArea.innerHTML = `<button class="button" style="margin:0;padding:7px 14px;font-size:13px;" onclick="acModal('giris')">Giriş Yap</button>`;
+        heroBaslik.textContent = `Gelecek bilimle, bilim fenle şekillenir.`;
+        heroAciklama.textContent = `Türkan Halit Aykılıç Fen Lisesi için hazırlanan okul portalına hoş geldiniz. Duyurular, sınıflar ve okul kaynakları için hızlıca göz atın.`;
+        heroButonlar.innerHTML = `<a class="button" href="#okul">Portalımızı Keşfet</a> <a class="button secondary" onclick="acModal('ogrenciKyt')">Öğrenci Kayıt Ol</a>`;
+      }
+    }
+
+    function cikisYap() {
+      localStorage.removeItem("thafl_user");
+      alert("Oturum kapatıldı.");
+      oturumKontrol();
+    }
+
+    // Modal Yönetimi
+    function acModal(tur) {
+      const modal = document.getElementById("modal");
+      const icerik = document.getElementById("modalIcerik");
+      let html = "";
+
+      if(tur === 'giris') {
+        html = `
+          <h2 style="margin-top:0">Portal Girişi</h2>
+          <p style="color:var(--muted);font-size:14px;">T.C. Kimlik / Sicil numaranızla giriş yapın:</p>
+          <label>T.C. Kimlik veya Sicil No</label>
+          <input id="girisTc" placeholder="Numaranız">
+          <label>Şifre</label>
+          <input type="password" id="girisSifre" placeholder="Şifreniz">
+          <label>Rol</label>
+          <select id="girisRol"><option value="Ogrenci">Öğrenci</option><option value="Ogretmen">Öğretmen / Admin</option></select>
+          <br><br>
+          <button class="button" style="width:100%" onclick="girisYapIslem()">Giriş Yap</button>
+        `;
+      } else if(tur === 'ogrenciKyt') {
+        html = `
+          <h2 style="margin-top:0">Öğrenci Kayıt Ol</h2>
+          <p style="color:var(--muted);font-size:14px;">Sisteme T.C. kimlik başına yalnızca bir kez kayıt olabilirsiniz.</p>
+          <label>Ad Soyad</label><input id="kytAd" placeholder="Adınız Soyadınız">
+          <label>T.C. Kimlik No</label><input id="kytTc" placeholder="11 haneli T.C." maxlength="11">
+          <label>Okul Numarası</label><input id="kytNo" placeholder="Okul no">
+          <label>Şube</label>
+          <select id="kytSube">
+            <option>9/A</option><option>9/B</option><option>9/C</option>
+            <option>10/A</option><option>10/B</option><option>10/C</option>
+            <option>11/A</option><option>11/B</option><option>11/C</option>
+            <option>12/A</option><option>12/B</option><option>12/C</option>
+          </select>
+          <label>Şifre Belirle</label><input type="password" id="kytSifre" placeholder="Şifreniz">
+          <br>
+          <button class="button" style="width:100%" onclick="kayitOlIslem()">Kayıt Ol ve Giriş Yap</button>
+        `;
+      } else if(tur === 'destek') {
+        html = `
+          <h2 style="margin-top:0">Destek Talebi Oluştur</h2>
+          <label>Konu</label><input id="biletKonu" placeholder="Örn: Laboratuvar cihaz talebi">
+          <label>Açıklama</label><textarea id="biletDetay" rows="4" placeholder="Talebinizi yazın..."></textarea>
+          <br>
+          <button class="button" style="width:100%" onclick="biletGonderIslem()">Talebi Gönder</button>
+        `;
+      } else if(tur === 'adminPaneli') {
+        let biletler = JSON.parse(localStorage.getItem("thafl_biletler") || "[]");
+        let biletHtml = biletler.length === 0 ? "<p>Bekleyen bilet bulunmuyor.</p>" : biletler.map((b, i) => `
+          <div style="background:var(--bg);padding:12px;margin-bottom:10px;border-radius:8px;border:1px solid var(--line);">
+            <small style="color:var(--blue);"><b>Gönderen:</b> ${b.ad} | ${b.tarih}</small>
+            <p style="margin:5px 0;font-weight:bold;">Konu: ${b.konu}</p>
+            <p style="margin:0;font-size:13px;color:var(--muted);">${b.detay}</p>
+            <button class="button secondary" style="padding:4px 8px;font-size:11px;margin-top:8px;background:#c0392b;" onclick="biletKapat(${i})">Bileti Kapat / Sil</button>
+          </div>
+        `).join('');
+        
+        icerik.innerHTML = `<h2 style="margin-top:0">👨‍🏫 Öğretmen Bilet Masası</h2><div style="max-height:300px;overflow-y:auto">${biletHtml}</div>`;
+        modal.classList.add("active");
+        return;
+      }
+      icerik.innerHTML = html;
+      modal.classList.add("active");
+    }
+
+    function kapatModal() { document.getElementById("modal").classList.remove("active"); }
+
+    function kayitOlIslem() {
+      const ad = document.getElementById("kytAd").value;
+      const tc = document.getElementById("kytTc").value;
+      const no = document.getElementById("kytNo").value;
+      const sube = document.getElementById("kytSube").value;
+      const sifre = document.getElementById("kytSifre").value;
+
+      if(!ad || !tc || !sifre) {
+        alert("Lütfen zorunlu alanları doldurun!");
+        return;
+      }
+
+      let ogrenciler = JSON.parse(localStorage.getItem("thafl_ogrenciler") || "[]");
+      
+      // Mükerrer kayıt kontrolü
+      const varMi = ogrenciler.some(o => o.tc === tc || (no && o.no === no));
+      if(varMi) {
+        alert("Bu T.C. Kimlik numarası veya okul numarasıyla zaten kayıt olunmuş!");
+        return;
+      }
+
+      const yeniOgr = { ad, tc, no, sube, sifre, rol: "Ogrenci" };
+      ogrenciler.push(yeniOgr);
+      localStorage.setItem("thafl_ogrenciler", JSON.stringify(ogrenciler));
+      
+      alert("Kayıt başarılı! Şimdi giriş yapabilirsiniz.");
+      kapatModal();
+      acModal('giris');
+    }
+
+    function girisYapIslem() {
+      const tcVeyaSicil = document.getElementById("girisTc").value;
+      const sifre = document.getElementById("girisSifre").value;
+      const rolSecimi = document.getElementById("girisRol").value;
+
+      if(!tcVeyaSicil || !sifre) {
+        alert("Lütfen bilgileri eksiksiz doldurun!");
+        return;
+      }
+
+      if(rolSecimi === "Ogrenci") {
+        let ogrenciler = JSON.parse(localStorage.getItem("thafl_ogrenciler") || "[]");
+        let ogrenci = ogrenciler.find(o => (o.tc === tcVeyaSicil || o.no === tcVeyaSicil) && o.sifre === sifre);
+        
+        if(ogrenci) {
+          localStorage.setItem("thafl_user", JSON.stringify(ogrenci));
+          alert(`Hoş geldin, ${ogrenci.ad}!`);
+          kapatModal();
+          oturumKontrol();
+        } else {
+          alert("Öğrenci bulunamadı veya şifre hatalı!");
+        }
+      } else {
+        // Öğretmen/Admin girişi kontrolü (Örn: Sicil: admin, Şifre: 1234 veya özel kod)
+        if(tcVeyaSicil === "admin" && sifre === "1234") {
+          let adminData = { ad: "Yetkili Öğretmen", rol: "Ogretmen" };
+          localStorage.setItem("thafl_user", JSON.stringify(adminData));
+          alert("Öğretmen girişi başarılı!");
+          kapatModal();
+          oturumKontrol();
+        } else {
+          alert("Hatalı öğretmen sicil numarası veya şifresi! (Örnek sicil: admin, şifre: 1234)");
+        }
+      }
+    }
+
+    function biletGonderIslem() {
+      const konu = document.getElementById("biletKonu").value;
+      const detay = document.getElementById("biletDetay").value;
+
+      if(!konu || !detay) {
+        alert("Lütfen tüm alanları doldurun.");
+        return;
+      }
+
+      let u = JSON.parse(localStorage.getItem("thafl_user"));
+      let biletler = JSON.parse(localStorage.getItem("thafl_biletler") || "[]");
+      
+      biletler.push({
+        ad: `${u.ad} (${u.sube})`,
+        konu,
+        detay,
+        tarih: new Date().toLocaleDateString()
+      });
+
+      localStorage.setItem("thafl_biletler", JSON.stringify(biletler));
+      alert("Destek biletiniz başarıyla öğretmenlere iletildi!");
+      kapatModal();
+    }
+
+    function biletKapat(index) {
+      let biletler = JSON.parse(localStorage.getItem("thafl_biletler") || "[]");
+      biletler.splice(index, 1);
+      localStorage.setItem("thafl_biletler", JSON.stringify(biletler));
+      alert("Bilet kapatıldı.");
+      acModal('adminPaneli');
+    }
+  </script>
+</body>
+</html>
